@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3167A3BB-D4F5-408F-B2D9-2CEF41FF8451}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VisualiDados.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ServerAndroid.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VisualiDados">
+        <MSBuild Projects="VisualiDados.dproj"/>
+    </Target>
+    <Target Name="VisualiDados:Clean">
+        <MSBuild Projects="VisualiDados.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VisualiDados:Make">
+        <MSBuild Projects="VisualiDados.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ServerAndroid">
+        <MSBuild Projects="ServerAndroid.dproj"/>
+    </Target>
+    <Target Name="ServerAndroid:Clean">
+        <MSBuild Projects="ServerAndroid.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerAndroid:Make">
+        <MSBuild Projects="ServerAndroid.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VisualiDados;ServerAndroid"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VisualiDados:Clean;ServerAndroid:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VisualiDados:Make;ServerAndroid:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
